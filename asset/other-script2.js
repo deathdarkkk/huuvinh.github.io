@@ -17,6 +17,6 @@ document.addEventListener('dragstart', function(e) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'F12') {
         e.preventDefault(); 
-        window.location.href = 'https://www.facebook.com/yourprofile'; 
+        window.location.href = 'https://www.facebook.com/profile.php?id=61563438726293&mibextid=ZbWKwL'; 
     }
 });
