@@ -21,11 +21,22 @@ const bufferLength = analyser.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
 function playAudio() {
+    if (audioContext.state === 'suspended') {
+        audioContext.resume().then(startPlayback);
+    } else {
+        startPlayback();
+    }
+}
+
+function startPlayback() {
     if (!audioPlayed) {
         audio.volume = 1.0;
         audio.src = playlist[currentTrackIndex];
-        audio.play();
-        audioPlayed = true;
+        audio.play().then(() => {
+            audioPlayed = true;
+        }).catch(error => {
+            console.error("Error playing audio:", error);
+        });
     }
 }
 
@@ -34,10 +45,6 @@ function playNextTrack() {
     audio.src = playlist[currentTrackIndex];
     audio.play();
 }
-
-document.addEventListener("click", playAudio);
-
-audio.addEventListener("ended", playNextTrack);
 
 function updateVisualizer() {
     analyser.getByteFrequencyData(dataArray);
@@ -78,4 +85,6 @@ function updateVisualizer() {
     requestAnimationFrame(updateVisualizer);
 }
 
+document.addEventListener("click", playAudio);
+audio.addEventListener("ended", playNextTrack);
 updateVisualizer();
