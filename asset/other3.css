@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 40px;
+  background-color: white; /* Màu nền bên trong là trắng */
+  border-radius: 20px; /* Điều chỉnh bo góc tại đây */
+  border: 5px solid white; /* Viền trắng quanh popup */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards, scaleUp 0.5s forwards;
+  font-family: Arial, sans-serif; /* Font chính */
+  font-weight: bold; /* Chữ in đậm */
+  font-style: italic; /* Chữ in nghiêng */
+}
+
+/* Căn chỉnh và kiểu cho biểu tượng và văn bản */
+.icon-text {
+    display: inline-flex;
+    align-items: center; /* Căn giữa biểu tượng và văn bản theo chiều dọc */
+    font-size: 24px; /* Kích thước biểu tượng */
+    color: #333; /* Màu văn bản */
+    text-decoration: none; /* Xóa gạch chân nếu có */
+    transition: color 0.3s ease, transform 0.3s ease; /* Hiệu ứng chuyển đổi */
+}
+
+.icon-text i {
+    margin-right: 8px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+.icon-text:hover {
+    color: #007bff; /* Màu khi di chuột */
+    transform: scale(1.1); /* Phóng to khi di chuột */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+#popup p {
+  margin: 0;
+  font-size: 18px;
+}
